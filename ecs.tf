@@ -2,6 +2,18 @@ resource "aws_ecs_cluster" "cluster" {
   name = local.world
 }
 
+resource "aws_ecs_cluster_capacity_providers" "cluster" {
+  cluster_name = aws_ecs_cluster.cluster.name
+
+  capacity_providers = ["FARGATE_SPOT"]
+
+  default_capacity_provider_strategy {
+    base              = 1
+    weight            = 100
+    capacity_provider = "FARGATE_SPOT"
+  }
+}
+
 resource "aws_iam_instance_profile" "ecs_instance" {
   name_prefix = "ecs_instance_profile"
   role        = aws_iam_role.ecs_instance_role.name

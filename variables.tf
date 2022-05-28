@@ -32,7 +32,7 @@ variable "task_name" {
   default = "valheim"
 }
 variable "docker_image" {
-  default = "mbround18/valheim:latest"
+  default = "mephi00/v-rising-wine:latest"
 }
 variable "world_name" {}
 variable "world_password" {}

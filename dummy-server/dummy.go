@@ -21,7 +21,7 @@ func main() {
 
 func udpServer(logger *log.Logger) {
 	host := "0.0.0.0"
-	port := 2457 // Steam connection port
+	port := 9876 // Steam connection port
 	blockSize := 1024
 
 	ip := net.ParseIP(host)
@@ -49,15 +49,15 @@ func udpServer(logger *log.Logger) {
 }
 
 func enableRealServer() {
-	valheimService := os.Getenv("VALHEIM_SERVICE")
+	targetService := os.Getenv("TARGET_SERVICE")
 	dummyService := os.Getenv("DUMMY_SERVICE")
-	valheimCluster := os.Getenv("VALHEIM_CLUSTER")
+	targetCluster := os.Getenv("TARGET_CLUSTER")
 	dummyCluster := os.Getenv("DUMMY_CLUSTER")
-	valheimAsg := os.Getenv("VALHEIM_ASG")
+	targetAsg := os.Getenv("TARGET_ASG")
 	dummyAsg := os.Getenv("DUMMY_ASG")
 
-	changeAsgCount(valheimAsg, 1)
-	changeServiceCount(valheimCluster, valheimService, 1)
+	changeAsgCount(targetAsg, 1)
+	changeServiceCount(targetCluster, targetService, 1)
 	changeServiceCount(dummyCluster, dummyService, 0)
 	changeAsgCount(dummyAsg, 0)
 }
@@ -118,7 +118,7 @@ func changeAsgCount(asg string, count int) {
 			AutoScalingGroupName: aws.String(asg),
 			DesiredCapacity:      aws.Int64(int64(count)),
 	}
-	
+
 	result, err := svc.SetDesiredCapacity(input)
 	if err != nil {
 			if aerr, ok := err.(awserr.Error); ok {
@@ -139,6 +139,6 @@ func changeAsgCount(asg string, count int) {
 			}
 			return
 	}
-	
+
 	fmt.Println(result)
 }

@@ -1,4 +1,4 @@
-module github.com/kpenfound/valheim-server
+module github.com/marcubus/vrising-server
 
 go 1.16
 

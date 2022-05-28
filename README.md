@@ -1,15 +1,15 @@
-# Valheim Terraform
+# VRising Terraform
 
 ### Instructions:
-- Create a directory for your local terraform state, such as `valheim-terraform`
+- Create a directory for your local terraform state, such as `vrising-terraform`
 - Create `main.tf` like so:
 ```
 provider "aws" {
   region = "us-east-1"
 }
 
-module "valheim-server" {
-  source         = "github.com/kpenfound/valheim-server?ref=v0.2.0"
+module "vrising-server" {
+  source         = "github.com/marcubus/valheim-server"
   key_name       = "my_aws_keypair_name"
   world_name     = "Valheim-friends"
   world_password = "hunter2"
