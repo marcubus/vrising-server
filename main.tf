@@ -11,9 +11,9 @@ terraform {
   }
 }
 
-resource "random_pet" "valheim" {
+resource "random_pet" "vrising" {
   keepers = {
-    valheim = var.world_name
+    vrising = var.world_name
   }
 }
 
@@ -28,7 +28,7 @@ resource "aws_default_vpc" "default" {
 }
 
 locals {
-  world  = "valheim-${random_pet.valheim.id}"
+  world  = "vrising-${random_pet.vrising.id}"
   vpc_id = var.vpc_id == "" ? aws_default_vpc.default.id : var.vpc_id
 }
 
@@ -40,10 +40,13 @@ data "aws_subnets" "default" {
 }
 
 resource "aws_s3_bucket" "backups" {
-  bucket_prefix = "valheim-backup-${lower(var.world_name)}"
+  bucket_prefix = "vrising-backup-${lower(var.world_name)}"
 }
 
 resource "aws_s3_bucket_acl" "backups" {
   bucket = aws_s3_bucket.backups.id
   acl    = "private"
+}
+
+data aws_caller_identity account {
 }

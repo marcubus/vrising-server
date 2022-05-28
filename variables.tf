@@ -1,12 +1,10 @@
 variable "region" {
-  default = "us-east-1"
+  default = "ap-southeast-2"
 }
+
 variable "vpc_id" {
   default     = ""
   description = "Optionally specify the vpc id to use instead of the default vpc"
-}
-variable "ecs_ami" {
-  default = "ami-0a5e7c9183d1cea27"
 }
 
 variable "instance_type" {
@@ -20,50 +18,66 @@ variable "dummy_instance_type" {
 variable "key_name" {
   description = "SSH key for ECS instance"
 }
+
 variable "task_cpu" {
   type    = number
   default = 1024
 }
+
 variable "task_memory" {
   type    = number
   default = 1024
 }
+
 variable "task_name" {
-  default = "valheim"
+  default = "vrising"
 }
+
 variable "docker_image" {
   default = "mephi00/v-rising-wine:latest"
 }
+
 variable "world_name" {}
+
 variable "world_password" {}
+
 variable "world_public" {
   default = "1"
 }
+
 variable "world_tz" {
   default = "America/Chicago"
 }
+
 variable "world_backup" {
   default = "1"
 }
+
 variable "world_backup_schedule" {
   default = "0 */6 * * *"
 }
+
 variable "world_backup_remove_old" {
   default = "1"
 }
+
 variable "world_backup_days_to_live" {
   default = "3"
 }
+
 variable "world_update" {
   default = "1"
 }
+
 variable "world_update_schedule" {
   default = "0 6 * * *"
 }
+
 variable "world_sleep_timer" {
   default     = 60
   description = "Number of minutes to wait before putting the server to sleep with no player activity"
 }
+
 variable "awscli_gpg_key" {
   default = <<EOF
   -----BEGIN PGP PUBLIC KEY BLOCK-----
