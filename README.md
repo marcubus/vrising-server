@@ -9,7 +9,7 @@ provider "aws" {
 }
 
 module "vrising-server" {
-  source         = "github.com/marcubus/valheim-server"
+  source         = "github.com/marcubus/vrising-server"
   key_name       = "my_aws_keypair_name"
   world_name     = "Valheim-friends"
   world_password = "hunter2"
